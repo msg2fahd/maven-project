@@ -8,10 +8,21 @@ pipeline{
                 }
                     
             }
-            stage("Build jar file"){
-               steps{
-               bat 'mvn clean install'
-                }    
+            // stage("Build jar file"){
+            //    steps{
+            //    bat 'mvn clean install'
+            //     } 
+            // }
+
+            stage{
+                steps{
+                    script{
+                    withSonarQubeEnv('sonar-scanner') {
+                        bat 'mvn sonar:sonar'
+                        }
+                     bat 'mvn clean install'   
+                    }    
+                }
             }
             
         }
