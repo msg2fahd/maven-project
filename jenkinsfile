@@ -1,0 +1,20 @@
+pipeline{
+    agent any
+     
+        stages{
+            stage("Git Clone"){
+                steps{
+                git credentialsId: '6d9b2875-79c0-498c-9f0c-8a9d1fa06380', url: 'https://github.com/msg2fahd/maven-project.git'
+                }
+                    
+            }
+            stage("Build jar file"){
+               steps{
+               bat 'mvn clean install'
+                }    
+            }
+            
+        }
+            
+        
+}
