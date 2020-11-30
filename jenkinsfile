@@ -33,7 +33,7 @@ pipeline{
             }
         }
             
-        }
+        
          stage('Clone sources')  {
 
              steps  {
@@ -55,7 +55,7 @@ pipeline{
              }
 
         }
-
+    }
 }
         @NonCPS
 
