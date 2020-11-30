@@ -34,6 +34,54 @@ pipeline{
         }
             
         }
+         stage('Clone sources')  {
+
+             steps  {
+
+                script {
+   
+                   def filelist = getChangedFilesList() // List of filenames that have changed
+
+                   def filename = filelist.find{item->item.contains("yaml")} //Returns the list of files having the yaml file extension from the filelist ArrayList
+
+                   echo "${filename}" //<filename>.yaml
+
+                   env.StoryId = filename.split("_")[0]     // JiraId will store the value that is used at various stages  
+
+                   echo "${env.StoryId}"
+
+                  }
+
+             }
+
+        }
+
+    }
+        @NonCPS
+
+def getChangedFilesList() {
+
+
+       changedFiles = []
+
+       for (changeLogSet in currentBuild.changeSets) { 
+
+               for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
+
+                      for (file in entry.getAffectedFiles()) {
+
+                             changedFiles.add(file.getPath()) // add changed file to list
+
+                      }
+
+               }
+
+       }
+
+       return changedFiles
+
+
+}
             
         
 }
