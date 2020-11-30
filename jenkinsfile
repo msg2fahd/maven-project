@@ -56,7 +56,7 @@ pipeline{
 
         }
 
-    }
+}
         @NonCPS
 
 def getChangedFilesList() {
@@ -84,4 +84,3 @@ def getChangedFilesList() {
 }
             
         
-}
