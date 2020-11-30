@@ -27,9 +27,11 @@ pipeline{
                 }
             }
             stage("Email-Notification"){
+                steps{
                 mail bcc: '', body: '''Hi,
                 welcome to jenkins email alert.''', cc: '', from: '', replyTo: '', subject: 'jenkins job', to: '5mo6tx@gmail.com'
             }
+        }
             
         }
             
